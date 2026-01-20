@@ -176,6 +176,6 @@ This project is licensed under the ISC License.
 
 ---
 
-**Made with ❤️ by [VikaSh221525](https://github.com/VikaSh221525)**
+**Made with ❤️ by Ishaan Sharma
 
 ⭐ Star this repo if you found it helpful!
