@@ -8,7 +8,7 @@ export async function registerUser(req, res) {
         const { fullName, email, password } = req.body;
         const isUserExist = await userModel.findOne({ email })
         if (isUserExist) {
-            res.status(400).json({ message: "user already exists" })
+            return res.status(400).json({ message: "user already exists" })
         }
 
         const idx = Math.floor(Math.random() * 100) + 1;  //generate a no. between 1 to 100
@@ -56,11 +56,11 @@ export async function loginUser(req, res) {
     try {
         const user = await userModel.findOne({ email });
         if (!user) {
-            res.status(400).json({ message: "Invalid Email or Password" })
+            return res.status(400).json({ message: "Invalid Email or Password" })
         }
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            res.status(400).json({ message: "Invalid credentials" })
+            return res.status(400).json({ message: "Invalid credentials" })
         }
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);

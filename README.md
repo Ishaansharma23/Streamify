@@ -52,7 +52,7 @@ A modern, real-time chat application built with the MERN stack and Stream Chat A
    Create `.env` file in the `Backend` directory:
    ```env
    PORT=3000
-   MONGODB_URI=your_mongodb_connection_string
+   MONGODB_URL=your_mongodb_connection_string
    JWT_SECRET=your_jwt_secret
    STREAM_API_KEY=your_stream_api_key
    STREAM_API_SECRET=your_stream_api_secret
@@ -149,7 +149,7 @@ The app is configured for easy deployment on platforms like:
 ```env
 NODE_ENV=production
 PORT=3000
-MONGODB_URI=your_production_mongodb_uri
+MONGODB_URL=your_production_mongodb_uri
 JWT_SECRET=your_production_jwt_secret
 STREAM_API_KEY=your_stream_api_key
 STREAM_API_SECRET=your_stream_api_secret

@@ -91,11 +91,12 @@ export async function acceptFriendRequest(req, res) {
 
         // update both users' friends list
         // add to set : adds an elements to an array if they do not already exists
+
         const sender = await userModel.findByIdAndUpdate(friendRequest.sender, {
-            $addToSet: {friends: friendRequest.recipient}
+            $addToSet: {friends: friendRequest.recipient} // Rahul ke friends me Ishaan
         });
         const recipient = await userModel.findByIdAndUpdate(friendRequest.recipient, {
-            $addToSet: {friends: friendRequest.sender}
+            $addToSet: {friends: friendRequest.sender} // // Ishaan ke friends me Rahul
         });
 
         res.status(200).json({message: "Friend request accepted successfully"});
@@ -107,12 +108,13 @@ export async function acceptFriendRequest(req, res) {
 }
 
 export async function getMyFriendRequests(req, res){
-    try{
+    try{ // mene nahi bheji mujhe ai hui reqs
         const incomingRequests = await FriendRequest.find({
             recipient: req.user._id,
             status: "pending",
         }).populate('sender', 'fullName profilePic nativeLanguage learningLanguage');
         
+        // mene req bheji user n accept krli ab hum friends h 
         const acceptedRequests = await FriendRequest.find({
             sender: req.user._id,
             status: "accepted",
@@ -125,8 +127,9 @@ export async function getMyFriendRequests(req, res){
     }
 }
 
+// Maine kaun-kaun si requests bheji hain jo pending hain”
 export async function getOutgoingFriendRequests(req, res){
-    try{
+    try{ // mene bheji req pr abhi tk accept nahi hui 
         const outgoingRequest = await FriendRequest.find({
             sender: req.user._id,
             status: "pending",
